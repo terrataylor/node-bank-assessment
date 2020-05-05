@@ -46,3 +46,5 @@ For development, API was tested using Postman
      √ should add coins to the till (PATCH)  
      √ should get change in coins from the till  
      √ should get log of failed transactions  
+
+These tests check basic API functionality.  More detailed tests to check coin values and transactions should be added.
