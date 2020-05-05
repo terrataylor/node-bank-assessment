@@ -5,7 +5,7 @@ const DIME = .1;
 const NICKEL = .05;
 const PENNY = .01;
 let transLog = [];
-
+const CURRENCY = [{ name: "quarters", value: .25 }, { name: "dimes", value: .1 }, { name: "nickels", value: .05 }, { name: "pennies", value: .01 }];
 
 //Function to add value of all coins
 const getSum = coins => {
@@ -13,8 +13,10 @@ const getSum = coins => {
   let dimes = coins.dimes * .10;
   let nickels = coins.nickels * .05;
   let pennies = coins.pennies * .01;
-  return quarters + dimes + nickels + pennies;
+  let sum = quarters + dimes + nickels + pennies;
+  return sum.toFixed(2);
 }
+
 //Function to return the count of each coin in the till
 exports.listTillCount = (req, res) => {
   res.json({
@@ -72,7 +74,6 @@ const getCoinsNeeded = (trans, coin, coinValue) => {
     let numOfCoins = Math.floor(trans.amount / coinValue);
     //setting the number of coins to be returned
     trans[coin] = numOfCoins;
-    trans.amount = trans.amount;
     //removing total coin value of transaction from the amount value
     trans.amount -= (numOfCoins * coinValue);
   }
@@ -89,10 +90,9 @@ exports.withdrawal = (req, res) => {
   const tillAmount = getSum(till);
 
   //retrieve coins for change starting with quarters to return the least amount of coins from till
-  getCoins(transaction, "quarters", QUARTER);
-  getCoins(transaction, "dimes", DIME);
-  getCoins(transaction, "nickels", NICKEL);
-  getCoins(transaction, "pennies", PENNY);
+  for (let i = 0; i < CURRENCY.length; i++) {
+    getCoins(transaction, CURRENCY[i].name, CURRENCY[i].value);
+  }
 
   //if all change was able to be returned, return a json with the change values and how much total money is remaining in the till
   if (transaction.amount == 0) {
@@ -105,11 +105,10 @@ exports.withdrawal = (req, res) => {
   } else {
     transaction.amount = amount;
     //Get coins that would be needed in till produce change
-    getCoinsNeeded(transaction, "quarters", QUARTER);
-    getCoinsNeeded(transaction, "dimes", DIME);
-    getCoinsNeeded(transaction, "nickels", NICKEL);
-    getCoinsNeeded(transaction, "pennies", PENNY);
-
+    for (let i = 0; i < CURRENCY.length; i++) {
+      getCoinsNeeded(transaction, CURRENCY[i].name, CURRENCY[i].value);
+    }
+    console.log(transaction);
     let coinsNeeded = {
       quarters: transaction.quarters, dimes: transaction.dimes, nickels: transaction.nickels, pennies: transaction.pennies
     };

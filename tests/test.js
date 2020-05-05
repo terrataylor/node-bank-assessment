@@ -32,18 +32,7 @@ describe('Till', () => {
     it("should add coins to the till", (done) => {
       let payload = { quarters: 1, dimes: 1, nickels: 1, pennies: 1 };
       chai.request(server)
-        .put('/till/', payload)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-
-    it("should add coins to the till (PATCH)", (done) => {
-      let payload = { quarters: 1, dimes: 1, nickels: 1, pennies: 1 };
-      chai.request(server)
-        .patch('/till/', payload)
+        .put('/till').send(payload)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
@@ -54,7 +43,7 @@ describe('Till', () => {
     it("should get change in coins from the till", (done) => {
       let amount = 1.46;
       chai.request(server)
-        .post('/till/', amount)
+        .post('/till').send({ "amount": amount })
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');
