@@ -19,13 +19,12 @@ To run tests, run 'npm run tests'
 *To add coins to till:*     
     method: PUT/PATCH   
     url: localhost:1234/till   
-    payload: pass an object into your request body with the coins you would like added in this format:
-  {  
-       quarters:0,  
-       dimes: 0,  
-       nickels:0,  
-       pennies:0  
-   }  
+    payload: pass an object into your request body with the coins you would like added in this format:  
+  {
+       quarters:0,
+       dimes: 0,       
+       nickels:0,
+       pennies:0 }  
 
 *To get the value of all coins in the till:* 
     method: GET  
@@ -35,11 +34,9 @@ To run tests, run 'npm run tests'
     method: POST     
     url: localhost:1234/till       
     payload: pass an object to your request body with the amount you would like in change in this format:  
-   {  
-        amount:.3  
-    }  
+   { amount: 0.99}  
 
-*To get a log of failed transactions:*
+*To get a log of failed transactions:*  
     method:GET  
     url: localhost:1234/till/log  
 
