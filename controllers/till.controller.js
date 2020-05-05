@@ -1,4 +1,4 @@
-import till from '../dummy/till';
+import till from '../data/till';
 
 const QUARTER = .25;
 const DIME = .1;
