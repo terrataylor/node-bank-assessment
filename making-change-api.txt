@@ -1,0 +1,39 @@
+# Back End Engineering Challenge -- Change
+
+Libera-Bank is building a demonstration for a POS system.  To ensure that cashiers give customers the correct (and optimal) set of change - you will devise an algorithm to compute the change (based on US currency)
+
+- You will create a REST service to:
+  - stock the till with coins (PUT & PATCH), either by replacing the till or just adding coins
+  - return the value of all coins in the till
+  - return the count of each coin in the till
+  - given a change amount ( < $1) - compute the optimal (smallest number of coins) needed to fufill the request (given the current coins in the till); if you can't make change note that
+  - when you make change, remove those coins from the till
+  
+  for example: 
+  - given 10 dimes and 34 pennies in the till; if the change amount were $0.99 you should offer 9 dimes and 9 pennies
+  - given 10 dimes, 3 nickels, and 9 pennies; if the change amount were $0.99 you should offer 9 dimes,  1 nickel, and 4 pennies
+  - given 10 dimes; if the change amount were $0.99 you should report that you can't make change
+
+## Requirements:
+
+- Do not include a database (for this iteration store all your data 'in-memory')
+- Create tests (either physically or suggest in your README) for any common issues
+- Handle errors (in format a business rules)
+
+- develop your solution as a complete package that will be run by the Libera team
+  - Include a readme and/or instructions for installing and running
+  - Induced instructions on how to run your included test or what those tests are
+  - Document any assumptions you made and issues you encountered
+
+## Useful information
+
+- for U.S. coins, assume:
+  - quarter = 0.25
+  - dime = 0.1
+  - nickel = 0.05
+  - penny = 0.01 
+
+
+## Bonus
+
+- add a method to the service to return the values (< $1) for which you can't make change for (as an array) as well as the minimal set of coins you need to continue to make change

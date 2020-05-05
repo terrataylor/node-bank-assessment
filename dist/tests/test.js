@@ -18,25 +18,46 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _chai2.default.use(_chaiHttp2.default);
 _chai2.default.should();
 
-describe('Students', function () {
+describe('Till', function () {
 
-  describe('GET all students', function () {
-    it("should get all students list", function (done) {
-      _chai2.default.request(_server2.default).get('/students').end(function (err, res) {
+  describe('GET coins in Till', function () {
+    it("should get a count of coins in the till", function (done) {
+      _chai2.default.request(_server2.default).get('/till').end(function (err, res) {
         res.should.have.status(200);
         res.body.should.be.a('object');
         done();
       });
     });
 
-    it("should get a single student record", function (done) {
-      var id = 1;
-      _chai2.default.request(_server2.default).get('/students/' + id).end(function (err, res) {
+    it("should get the value of coins in the till", function (done) {
+      _chai2.default.request(_server2.default).get('/till/value').end(function (err, res) {
         res.should.have.status(200);
         res.body.should.be.a('object');
-        res.body.should.have.property('student');
         done();
       });
     });
+
+    it("should add coins to the till", function (done) {
+      var payload = { quarters: 1, dimes: 1, nickels: 1, pennies: 1 };
+      _chai2.default.request(_server2.default).put('/till/', payload).end(function (err, res) {
+        console.log(res);
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        done();
+      });
+    });
+
+    /* it("should get a single student record", (done) => {
+       const id = 1;
+       chai
+         .request(server)
+         .get(`/students/${id}`)
+         .end((err, res) => {
+           res.should.have.status(200);
+           res.body.should.be.a('object');
+           res.body.should.have.property('student');
+           done();
+         })
+     })*/
   });
 });

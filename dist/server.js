@@ -20,7 +20,7 @@ app.use(_bodyParser2.default.urlencoded({ extended: false }));
 app.use((0, _cors2.default)());
 
 // ROUTES...
-var students = require('./routes/students.route');
+var till = require('./routes/till.route');
 
 app.get('/', function (req, res) {
 	res.status(200).json({
@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 	});
 });
 
-app.use('/students', students);
+app.use('/till', till);
 
 var PORT = 1234;
 var server = app.listen(PORT, function () {

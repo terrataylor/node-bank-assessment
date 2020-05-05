@@ -34,25 +34,45 @@ describe('Till', () => {
       chai.request(server)
         .put('/till/', payload)
         .end((err, res) => {
-          console.log(res);
           res.should.have.status(200);
           res.body.should.be.a('object');
           done();
         });
     });
 
-    /* it("should get a single student record", (done) => {
-       const id = 1;
-       chai
-         .request(server)
-         .get(`/students/${id}`)
-         .end((err, res) => {
-           res.should.have.status(200);
-           res.body.should.be.a('object');
-           res.body.should.have.property('student');
-           done();
-         })
-     })*/
+    it("should add coins to the till (PATCH)", (done) => {
+      let payload = { quarters: 1, dimes: 1, nickels: 1, pennies: 1 };
+      chai.request(server)
+        .patch('/till/', payload)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it("should get change in coins from the till", (done) => {
+      let amount = 1.46;
+      chai.request(server)
+        .post('/till/', amount)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+
+    it("should get log of failed transactions", (done) => {
+      let amount = 1.46;
+      chai.request(server)
+        .get('/till/log')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.log.should.be.a('array');
+          done();
+        });
+    });
   });
 
 
