@@ -43,7 +43,6 @@ For development, API was tested using Postman
      √ should get a count of coins in the till  
      √ should get the value of coins in the till  
      √ should add coins to the till  
-     √ should add coins to the till (PATCH)  
      √ should get change in coins from the till  
      √ should get log of failed transactions  
 
