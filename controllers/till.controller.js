@@ -1,9 +1,5 @@
 import till from '../data/till';
 
-const QUARTER = .25;
-const DIME = .1;
-const NICKEL = .05;
-const PENNY = .01;
 let transLog = [];
 const CURRENCY = [{ name: "quarters", value: .25 }, { name: "dimes", value: .1 }, { name: "nickels", value: .05 }, { name: "pennies", value: .01 }];
 
