@@ -96,6 +96,7 @@ exports.withdrawal = (req, res) => {
 
   //if all change was able to be returned, return a json with the change values and how much total money is remaining in the till
   if (transaction.amount == 0) {
+    transaction.amount = amount;
     res.json({
       status: 200,
       change: transaction,
