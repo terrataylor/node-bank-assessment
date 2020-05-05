@@ -108,7 +108,7 @@ exports.withdrawal = (req, res) => {
     for (let i = 0; i < CURRENCY.length; i++) {
       getCoinsNeeded(transaction, CURRENCY[i].name, CURRENCY[i].value);
     }
-    console.log(transaction);
+
     let coinsNeeded = {
       quarters: transaction.quarters, dimes: transaction.dimes, nickels: transaction.nickels, pennies: transaction.pennies
     };
